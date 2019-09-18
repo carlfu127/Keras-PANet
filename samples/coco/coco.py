@@ -389,20 +389,19 @@ def evaluate_coco(model, dataset, coco, eval_type="bbox", limit=0, image_ids=Non
 
 if __name__ == '__main__':
     import argparse
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
     # Parse command line arguments
     parser = argparse.ArgumentParser(
         description='Train Mask R-CNN on MS COCO.')
     parser.add_argument("command", default='train',
                         help="'train' or 'evaluate' on MS COCO")
-    parser.add_argument('--dataset', default='/home/datas/raid0/sde/clf8113/datasets/coco',
+    parser.add_argument('--dataset', default='datasets/coco',
                         help='Directory of the MS-COCO dataset')
     parser.add_argument('--year', required=False,
                         default=DEFAULT_DATASET_YEAR,
                         metavar="<year>",
                         help='Year of the MS-COCO dataset (2014 or 2017) (default=2014)')
-    parser.add_argument('--model', default='/mnt/sdb/clf8113/research2/mask_RCNN-master/pretrained_models/'
-                                          'resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5',
+    parser.add_argument('--model', default='pretrained_models/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5',
                         help="Path to weights .h5 file or 'coco'")
     parser.add_argument('--logs', required=False,
                         default=DEFAULT_LOGS_DIR,

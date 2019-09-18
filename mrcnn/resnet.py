@@ -110,32 +110,3 @@ def ResNet(input_image, architecture):
     #
     # model = keras.models.Model(input_image, x, name=architecture)
     # return model
-
-def get_session():
-    gpu_options = tf.GPUOptions(allow_growth=True)
-    # gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.7)
-    return tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
-#
-# if __name__ == '__main__':
-#     import os
-#     import cv2
-#     import numpy as np
-#     from keras.applications.imagenet_utils import decode_predictions
-#     os.environ['CUDA_VISIBLE_DEVICES'] = '4'
-#     keras.backend.tensorflow_backend.set_session(get_session())
-#
-#     input_image = keras.layers.Input(shape=(224, 224, 3), name="input_image")
-#     model = ResNet(input_image, 'resnet101')
-#     model.load_weights('/mnt/sdb/clf8113/research2/mask_RCNN-master/pretrained_models/resnet101_weights_tf_dim_ordering_tf_kernels.h5',
-#                        by_name=True)
-#     mean = [103.939, 116.779, 123.68]
-#     x = cv2.imread('/mnt/sdb/clf8113/research2/mask_RCNN-master/test_images/20190902111334.jpg')
-#     x = x[..., ::-1]
-#     x = cv2.resize(x, (224, 224))
-#     x = np.expand_dims(x, axis=0)
-#     x = x - np.array(mean)
-#     res = model.predict(x)
-#     print('Predicted:', decode_predictions(res))
-#     print()
-#
-#

@@ -86,7 +86,7 @@ def display_instances(image, boxes, masks, class_ids, class_names,
                       figsize=(8, 8), ax=None,
                       show_mask=True, show_bbox=True,
                       colors=None, captions=None, file_name=None, auto_show=False,
-                      save_dir='/mnt/sdb/clf8113/research2/mask_RCNN-master/results'):
+                      save_dir=''):
     """
     boxes: [num_instance, (y1, x1, y2, x2, class_id)] in image coordinates.
     masks: [height, width, num_instances]
@@ -101,7 +101,7 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     """
     # Number of instances
     from matplotlib.font_manager import FontProperties
-    font = FontProperties(fname='/mnt/sdb/clf8113/datasets/fonts/simsun.ttc')
+    font = FontProperties(fname='simsun.ttc')
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     if file_name:
@@ -111,10 +111,6 @@ def display_instances(image, boxes, masks, class_ids, class_names,
         import skimage.io
         if file_name:
             skimage.io.imsave(save_path, image)
-        # return
-        # print("\n*** No instances to display *** \n")
-        # import skimage.io
-        # skimage.io.imsave('/mnt/sde/clf8113/research2/mask_RCNN-master/results/norm/%s' % name.replace('jpg', 'png'), image)
     else:
         assert boxes.shape[0] == masks.shape[-1] == class_ids.shape[0]
 

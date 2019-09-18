@@ -1,12 +1,3 @@
-"""
-Mask R-CNN
-The main Mask R-CNN model implementation.
-
-Copyright (c) 2017 Matterport, Inc.
-Licensed under the MIT License (see LICENSE for details)
-Written by Waleed Abdulla
-"""
-
 import os
 import random
 import datetime
@@ -1063,31 +1054,6 @@ def mrcnn_class_loss_graph(target_class_ids, pred_class_logits,
     # TODO: Update this line to work with batch > 1. Right now it assumes all
     #       images in a batch have the same active_class_ids
     pred_active = tf.gather(active_class_ids[0], pred_class_ids)
-
-    # focal loss
-    # labels = keras.backend.one_hot(target_class_ids, 16)
-    # classification = keras.backend.sigmoid(pred_class_logits)
-    # alpha = keras.backend.ones_like(labels) * 0.25
-    # alpha = tf.where(keras.backend.equal(labels, 1), alpha, 1 - alpha)
-    # focal = tf.where(keras.backend.equal(labels, 1), 1 - classification, classification)
-    # focal_weight = alpha * (focal ** 2)
-    # loss = focal_weight * keras.backend.binary_crossentropy(labels, classification)
-    # loss = keras.backend.sum(loss) / keras.backend.sum(pred_active)
-
-    # weightes loss
-    # weights = np.array([1., 1., 6.13, 0.09,
-    #                     0.44, 0.74, 2.86, 6.08,
-    #                     9.04, 1.18, 1.65, 9.4,
-    #                     0.62, 0.78, 31.58, 15.69])
-    # weights = K.variable(weights, dtype=tf.float32)
-    # labels = keras.backend.one_hot(target_class_ids, 16)
-    # output = keras.backend.softmax(pred_class_logits, axis=-1)
-    # output /= tf.reduce_sum(output, -1, True)
-    #
-    # _epsilon = tf.convert_to_tensor(1e-7, output.dtype.base_dtype)
-    # output = tf.clip_by_value(output, _epsilon, 1. - _epsilon)
-    # loss = labels * K.log(output) * weights
-    # loss = -K.sum(loss, -1)
 
     # # Loss
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
